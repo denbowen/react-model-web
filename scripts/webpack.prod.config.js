@@ -13,8 +13,8 @@ const baseConfig = require('./webpack.base.config')
 module.exports = merge(baseConfig, {
   mode: 'production',
   output: {
-    filename: '[name].[chunckhash].js',
-    chunkFilename: '[name].[chunckhash].js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: './'
   },
   optimization: {
@@ -41,6 +41,32 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.less/,
+        exclude: /node_modules/,
+        use: [
+          CssLoader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+              },
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less/,
+        include: /node_modules/,
         use: [
           CssLoader,
           'css-loader',

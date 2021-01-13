@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {actions} from "@/store/modules/test/actions";
+import styles from './index.less'
 
 // redux的state
 const mapStateToProps = state => {
@@ -24,7 +25,7 @@ const Page1 = connect(mapStateToProps, mapDispatchToProps)((props) => {
       count: count + 1,
     });
   };
-  return <div>
+  return <div className={styles['page1']}>
     <p onClick={onClick}>{props.count}</p>
     {/*<button onClick={() => setNumber(number + 1)}>+</button>*/}
     {/*<button onClick={alertNumber}>alertNumber</button>*/}

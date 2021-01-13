@@ -113,9 +113,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HappyPack({
-      // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
       id: JS_LOADER_ID,
-      // 线程池
       threadPool: happyThreadPool,
       // 如何处理 .js 文件，用法和 Loader 配置中一样
       loaders: [
